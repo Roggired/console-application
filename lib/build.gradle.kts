@@ -9,12 +9,14 @@
 plugins {
     // Apply the org.jetbrains.kotlin.jvm Plugin to add support for Kotlin.
     id("org.jetbrains.kotlin.jvm") version "1.4.20"
+    id("application")
 
     // Apply the java-library plugin for API and implementation separation.
     `java-library`
 }
 
 group = "ru.roggi"
+version = 1.0
 
 repositories {
     // Use JCenter for resolving dependencies.
@@ -33,4 +35,8 @@ dependencies {
 
     // This dependency is exported to consumers, that is to say found on their compile classpath.
     api("org.apache.commons:commons-math3:3.6.1")
+}
+
+tasks.jar {
+    archiveBaseName.set("console-application")
 }

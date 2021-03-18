@@ -1,4 +1,4 @@
-package ru.roggi.console.application.event
+package ru.roggi.console.application.view.event
 
 /**
  * @authorRoggi

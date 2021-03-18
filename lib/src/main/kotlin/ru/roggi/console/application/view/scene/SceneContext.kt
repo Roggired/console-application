@@ -1,6 +1,6 @@
-package ru.roggi.console.application.scene
+package ru.roggi.console.application.view.scene
 
-import ru.roggi.console.application.event.ExitEventListener
+import ru.roggi.console.application.view.event.ExitEventListener
 
 /**
  * SceneContext provides to scenes ability to use router and also to share any data between each other.

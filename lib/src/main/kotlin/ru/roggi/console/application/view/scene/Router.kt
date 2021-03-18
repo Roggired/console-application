@@ -1,4 +1,4 @@
-package ru.roggi.console.application.scene
+package ru.roggi.console.application.view.scene
 
 /**
  * Router brings you ability to switch scenes. It invokes Scene.start method and provides SceneContext.

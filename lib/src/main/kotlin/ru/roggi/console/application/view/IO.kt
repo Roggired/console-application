@@ -1,23 +1,23 @@
-package ru.roggi.console.application
+package ru.roggi.console.application.view
 
 
 fun readFromStdin(invitation: String): String {
     println(invitation)
-    return readNotNullString()
+    return readNotNullStringFromStdin()
 }
 
 fun <T> readFromStdin(invitation: String, cast: (string: String) -> T): T {
     println(invitation)
     while (true) {
         try {
-            return cast(readNotNullString())
+            return cast(readNotNullStringFromStdin())
         } catch (e: NumberFormatException) {
             println("Value has wrong type. Please, enter again:")
         }
     }
 }
 
-private fun readNotNullString(): String {
+fun readNotNullStringFromStdin(): String {
     while (true) {
         val userInput = readLine()
 
