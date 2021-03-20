@@ -1,6 +1,7 @@
 
 package ru.roggi.console.application.view.scene
 
+import ru.roggi.console.application.model.Intent
 import ru.roggi.console.application.model.State
 
 /**
@@ -13,10 +14,10 @@ import ru.roggi.console.application.model.State
  */
 interface Scene {
     fun start(sceneContext: SceneContext)
+
+    fun start(sceneContext: SceneContext, stateReducer: (Intent) -> Unit) {
+        throw RuntimeException("Not override")
+    }
 }
 
-abstract class StatefulScene(protected val state: State): Scene
-
-typealias Switch<T> = (t: T) -> String
-
-typealias SwitchTwo<T, E> = (t: T, e: E) -> String
+abstract class StatefulScene<T: State>(protected val state: T): Scene

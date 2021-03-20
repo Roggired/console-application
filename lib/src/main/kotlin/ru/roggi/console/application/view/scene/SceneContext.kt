@@ -30,4 +30,8 @@ class SceneContext(val router: Router) {
     fun exit() = exitListeners.forEach { it.handle() }
 
     fun addExitListener(exitEventListener: ExitEventListener) = exitListeners.add(exitEventListener)
+
+    fun addExitListener(listener: () -> Unit) = exitListeners.add(object: ExitEventListener {
+        override fun handle() = listener()
+    })
 }

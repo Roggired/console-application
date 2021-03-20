@@ -1,5 +1,7 @@
 package ru.roggi.console.application.view.scene
 
+import ru.roggi.console.application.model.Intent
+
 /**
  * Router brings you ability to switch scenes. It invokes Scene.start method and provides SceneContext.
  *
@@ -8,8 +10,8 @@ package ru.roggi.console.application.view.scene
  */
 class Router {
     private val scenes: MutableMap<String, Scene> = mutableMapOf()
-    val sceneContext = SceneContext(this)
-
+    val sceneContext = SceneContext(this).apply { addExitListener { exited = true } }
+    private var exited = false
 
     /**
      * Registers the scene on the route for future invoking in switch method.
@@ -20,6 +22,16 @@ class Router {
     /**
      * Invokes Scene.start of a scene registered on given route.
      */
-    fun switch(route: String) = scenes[route]?.start(sceneContext) ?: throw IllegalArgumentException("No such route")
+    fun switch(route: String) {
+        if (exited) return
+
+        scenes[route]?.start(sceneContext) ?: throw IllegalArgumentException("No such route")
+    }
+
+    fun switch(route: String, stateReducer: (Intent) -> Unit) {
+        if (exited) return
+
+        scenes[route]?.start(sceneContext, stateReducer) ?: throw IllegalArgumentException("No such route")
+    }
 }
 
