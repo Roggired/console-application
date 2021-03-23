@@ -24,6 +24,8 @@ class SceneContext(val router: Router) {
      */
     fun get(key: String) = data[key]
 
+    fun remove(key: String) = data.remove(key)
+
     /**
      * Notifies exit event listeners.
      */
